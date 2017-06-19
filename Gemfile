@@ -1,0 +1,12 @@
+source 'https://ruby.taobao.org'
+
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'json'
+gem 'redis'
+gem 'colorize'
+gem 'rest-client'
+gem 'require_all'
+gem 'droplet_kit'
+gem 'mongoid'
+gem 'sinatra'
+gem 'sinatra-contrib'
