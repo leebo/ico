@@ -1,11 +1,11 @@
 var Web3 = require('web3')
-web3 = new Web3(new Web3.providers.HttpProvider("http://138.68.241.151:8545"));
+web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 account = web3.eth.coinbase
 to = process.argv.slice(2)
 var trans_data = {
   from: account,
   to: to,
-  value: web3.toWei('1', 'ether'),
+  value: web3.toWei('0.01', 'ether'),
   gasPrice: 50000000000,
   gas: 21000
 }
