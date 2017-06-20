@@ -10,4 +10,6 @@ class Server
   field :balance, type: String
   # wallet
   field :wallet, type: String
+  # wallet
+  field :hostname, type: String
 end

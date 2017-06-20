@@ -7,13 +7,15 @@ require 'colorize'
 require 'droplet_kit'
 require 'mongoid'
 require 'upyun'
+require 'socket'
+hostname = Socket.gethostname
 upyun = Upyun::Rest.new('xj8-img', "bobo", "lendlove")
 # require 'require_all'
 # require_all 'libs'
 
 # 新建主机
-server = JSON.parse(RestClient.post('http://138.68.241.151:4567/servers', {}).body)["server"]
-puts server
+# server = JSON.parse(RestClient.post('http://138.68.241.151:4567/servers', {}).body)["server"]
+# puts server
 # # 新建钱包
 puts "===============开始新建钱包================="
 # `echo "lendlove" >> pass`
@@ -29,7 +31,7 @@ upyun.put(server["_id"]["$oid"], file.gets)
 # file.close
 # puts wallet.to_json
 # 提交钱包和地址
-RestClient.put 'http://138.68.241.151:4567/servers', { server: { addr: addr } }.to_json
+RestClient.put 'http://138.68.241.151:4567/servers', { server: { addr: addr, hostname: hostname } }.to_json
 
 # 查询状态 直到开始 执行转币指令
 
