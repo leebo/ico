@@ -16,15 +16,17 @@ puts server
 puts "===============开始新建钱包================="
 `echo "lendlove" >> pass`
 addr = `geth --password pass account new`
-puts addr
+addr =JSON.parse(addr)
+puts addr["Address"]
 # 备份钱包
 puts "===============开始备份================="
 key_path = Dir["/root/.ethereum/keystore/*"][0]
 file = File.new(key_path, "r")
 wallet = file.gets
 file.close
+puts wallet
 # 提交钱包和地址
-puts JSON.parse(RestClient.put('http://138.68.241.151:4567/servers').body, { server: { addr: addr, wallet: wallet}} )
+puts JSON.parse(RestClient.put('http://138.68.241.151:4567/servers', { server: { addr: addr["Address"], wallet: wallet}}).body )
 
 # 查询状态 直到开始 执行转币指令
 
