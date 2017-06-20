@@ -22,6 +22,7 @@ key_ids = []
   key_ids << '10067431'
 end
 user_data = "
+  /usr/local/bin/supervisord -c /etc/supervisord.conf
   git clone https://github.com/leebo/ico.git
   cd ico
   bundle install
