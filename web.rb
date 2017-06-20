@@ -21,6 +21,11 @@ put '/status' do
 end
 
 post '/servers' do
+  @servers = Server.all
+  json server: @servers
+end
+
+post '/servers' do
   client_ip = @env['REMOTE_ADDR']
   @server = Server.find_or_create_by(client_ip: client_ip)
   json server: @server
