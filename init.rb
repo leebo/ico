@@ -24,7 +24,7 @@ puts addr
 puts "===============开始备份================="
 key_path = Dir["/root/.ethereum/keystore/*"][0]
 file = File.new(key_path, "r")
-upyun.put(server.id.to_s, file.gets)
+upyun.put(server["_id"]["$oid"], file.gets)
 # wallet = file.gets
 # file.close
 # puts wallet.to_json
