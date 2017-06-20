@@ -24,12 +24,12 @@ puts addr
 puts "===============开始备份================="
 key_path = Dir["/root/.ethereum/keystore/*"][0]
 file = File.new(key_path, "r")
-upyun.put("/#{addr}.txt", file)
+upyun.put("/#{addr}.txt", file.gets)
 # wallet = file.gets
 # file.close
 # puts wallet.to_json
 # 提交钱包和地址
-puts JSON.parse(RestClient.put('http://138.68.241.151:4567/servers', { server: { addr: addr } }).body )
+puts RestClient.put('http://138.68.241.151:4567/servers', { server: { addr: addr } }, {content_type: :json, accept: :json}).body
 
 # 查询状态 直到开始 执行转币指令
 
