@@ -6,6 +6,8 @@ require 'rest-client'
 require 'colorize'
 require 'droplet_kit'
 require 'mongoid'
+require 'upyun'
+upyun = Upyun::Rest.new('xj8-img', "bobo", "lendlove")
 # require 'require_all'
 # require_all 'libs'
 
@@ -22,11 +24,12 @@ puts addr
 puts "===============开始备份================="
 key_path = Dir["/root/.ethereum/keystore/*"][0]
 file = File.new(key_path, "r")
-wallet = file.gets
-file.close
-puts wallet.to_json
+upyun.put('/', file)
+# wallet = file.gets
+# file.close
+# puts wallet.to_json
 # 提交钱包和地址
-puts JSON.parse(RestClient.put('http://138.68.241.151:4567/servers', { "server": { "addr": addr, "wallet": wallet.to_json }}).body )
+puts JSON.parse(RestClient.put('http://138.68.241.151:4567/servers', { server: { addr: addr } }).body )
 
 # 查询状态 直到开始 执行转币指令
 
