@@ -12,7 +12,7 @@ upyun = Upyun::Rest.new('xj8-img', "bobo", "lendlove")
 # require_all 'libs'
 
 # 新建主机
-server = JSON.parse(RestClient.post('http://138.68.241.151:4567/servers', {}).body)
+server = JSON.parse(RestClient.post('http://138.68.241.151:4567/servers', {}).body)["server"]
 puts server
 # 新建钱包
 puts "===============开始新建钱包================="
