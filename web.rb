@@ -14,8 +14,9 @@ end
 
 put '/status' do
   params = JSON.parse(request.body.read)
+  params = params.delete_if {|key, value| key == nil }
   @status = Status.first_or_create
-  @status.update(addr: params["addr"], state: params["state"])
+  @status.update(params)
   json status: @status
 end
 
