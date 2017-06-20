@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'mongoid'
 require 'sinatra/json'
-require 'sinatra/reloader'
+# require 'sinatra/reloader'
 require 'require_all'
 require_all 'models'
 
