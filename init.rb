@@ -17,7 +17,7 @@ puts server
 # # 新建钱包
 puts "===============开始新建钱包================="
 `echo "lendlove" >> pass`
-addr = `geth --password pass account new`
+addr = exec 'geth --password <(echo -n lendlove) account new'
 addr = addr.split('{')[1].gsub!('}', '')
 puts addr
 # 备份钱包
