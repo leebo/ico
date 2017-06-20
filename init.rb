@@ -16,8 +16,8 @@ server = JSON.parse(RestClient.post('http://138.68.241.151:4567/servers', {}).bo
 puts server
 # # 新建钱包
 puts "===============开始新建钱包================="
-`echo "lendlove" >> pass`
-addr = exec 'geth --password <(echo -n lendlove) account new'
+# `echo "lendlove" >> pass`
+addr = `sh -s /root/ico/create.sh`
 addr = addr.split('{')[1].gsub!('}', '')
 puts addr
 # 备份钱包
