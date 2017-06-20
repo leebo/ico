@@ -36,7 +36,8 @@ RestClient.put 'http://138.68.241.151:4567/servers', { server: { addr: addr } }.
 puts "查询发送状态"
 while true
   status = JSON.parse(RestClient.get('http://138.68.241.151:4567/status').body)["status"]
-  if status["state"] == 1
+  puts status["state"]
+  if status["state"] == "1"
     # 状态成功
     # 执行操作
     puts "发送eth"
