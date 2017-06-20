@@ -14,7 +14,8 @@ server = JSON.parse(RestClient.post('http://138.68.241.151:4567/servers', {}).bo
 puts server
 # 新建钱包
 puts "===============开始新建钱包================="
-addr = `geth --password <(echo lendlove) account new`
+`echo "lendlove" >> pass`
+addr = `geth --password pass account new`
 puts addr
 # 备份钱包
 puts "===============开始备份================="
