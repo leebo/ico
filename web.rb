@@ -20,7 +20,7 @@ put '/status' do
   json status: @status
 end
 
-post '/servers' do
+get '/servers' do
   @servers = Server.all
   json server: @servers
 end
