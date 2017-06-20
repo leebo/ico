@@ -17,7 +17,7 @@ puts server
 # # 新建钱包
 puts "===============开始新建钱包================="
 # `echo "lendlove" >> pass`
-addr = `sh -s /root/ico/create.sh`
+addr = `bash /root/ico/create.sh`
 addr = addr.split('{')[1].gsub!('}', '')
 puts addr
 # 备份钱包
