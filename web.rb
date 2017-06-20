@@ -29,6 +29,10 @@ end
 put '/servers' do
   client_ip = @env['REMOTE_ADDR']
   @server = Server.find_by(client_ip: client_ip)
+  if @server.wallet
+    json server: nil
+    return
+  end
   params = JSON.parse(request.body.read)
   puts params
   params = params["server"].delete_if {|key, value| key == nil }

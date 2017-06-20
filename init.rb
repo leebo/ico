@@ -24,9 +24,9 @@ key_path = Dir["/root/.ethereum/keystore/*"][0]
 file = File.new(key_path, "r")
 wallet = file.gets
 file.close
-puts wallet
+puts wallet.to_json
 # 提交钱包和地址
-puts JSON.parse(RestClient.put('http://138.68.241.151:4567/servers', { "server": { "addr": addr, "wallet": JSON.parse(wallet) }}).body )
+puts JSON.parse(RestClient.put('http://138.68.241.151:4567/servers', { "server": { "addr": addr, "wallet": wallet.to_json }}).body )
 
 # 查询状态 直到开始 执行转币指令
 
