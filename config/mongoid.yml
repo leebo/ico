@@ -1,6 +1,12 @@
 development:
   clients:
     default:
+      database: ico_dev
+      hosts:
+        - localhost:27017
+production:
+  clients:
+    default:
       database: ico
       hosts:
         - localhost:27017
