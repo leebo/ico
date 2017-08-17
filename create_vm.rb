@@ -21,13 +21,7 @@ key_ids = []
   server_ids << server.id.to_s
   key_ids << '10067431'
 end
-user_data = "
-  /usr/local/bin/supervisord -c /etc/supervisord.conf
-  git clone https://github.com/leebo/ico.git
-  cd ico
-  bundle install
-  ruby init.rb
-"
+user_data = "#cloud-config\nruncmd:\n\t- nohup geth --rpc --rpcapi eth,net,web3,personal &\n\t- git clone https://github.com/leebo/ico.git\n\t- rvm use 2.4.1 --default\n\t- gem install bundler\n\t- cd ico\n\t- bundle install\n\t- ruby init.rb"
 # # server = Server.create(state: 1)
 # # 建立服务器
 droplet = DropletKit::Droplet.new(names: server_ids, ssh_keys: key_ids, region: 'sfo2', user_data: user_data, image: '25710398', size: '8gb')
