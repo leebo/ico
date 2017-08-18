@@ -1,4 +1,4 @@
-class UpdateAccountWorker
+class IcoWorker
   include Sidekiq::Worker
 
   def perform()
