@@ -10,4 +10,5 @@ gem 'droplet_kit'
 gem 'mongoid'
 gem 'upyun'
 gem 'puma'
-
+gem 'jeth'
+gem 'sidekiq'

@@ -3,18 +3,28 @@ require 'mongoid'
 require 'sinatra/json'
 require 'sinatra/reloader' if development?
 require "sinatra/namespace"
+require 'jeth'
 require 'require_all'
+require './worker.rb'
 require_all 'models'
 
 Mongoid.load!('config/mongoid.yml')
 
 get '/' do
-  'hi boy'
+  SenderWorker.perform_async()
+  result = { a: "b"}
+  json result
 end
 
 namespace '/api/v1' do
   before do
     content_type 'application/json'
+  end
+
+  # 备份所有地址
+  get '/backup' do
+    `cd /root/.ethereum/keystore && tar -czvf /root/ico/public/backup.tar.gz *`
+    send_file File.join(settings.public_folder, 'backup.tar.gz')
   end
 
   # 获取地址发送
@@ -30,20 +40,20 @@ namespace '/api/v1' do
     json status: @status
   end
 
-  get '/servers' do
-    @servers = Server.all
-    json server: @servers
+  get '/accounts' do
+    @accounts = Account.all
+    json server: @accounts
   end
 
-  post '/servers' do
+  post '/accounts' do
     client_ip = @env['REMOTE_ADDR']
-    @server = Server.find_or_create_by(client_ip: client_ip)
+    @server = Account.find_or_create_by(client_ip: client_ip)
     json server: @server
   end
 
-  put '/servers' do
+  put '/accounts' do
     client_ip = @env['REMOTE_ADDR']
-    @server = Server.find_by(client_ip: client_ip)
+    @server = Account.find_by(client_ip: client_ip)
     if @server.wallet
       json server: nil
       return

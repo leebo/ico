@@ -1,18 +1,20 @@
 var Web3 = require('web3')
-web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
-account = web3.eth.coinbase
-to = process.argv.slice(2)
+var server = '165.227.20.127'
+var web3 = new Web3(new Web3.providers.HttpProvider('http://' + server + ':8545'));
+var from = process.argv.slice(2)
+var to = process.argv.slice(3)
+var value = process.argv.slice(4)
 var trans_data = {
-  from: account,
+  from: from,
   to: to,
-  value: web3.toWei('0.01', 'ether'),
+  value: 100,
   gasPrice: 50000000000,
   gas: 21000
 }
-console.log(trans_data)
 // var balances = web3.eth.getBalance(web3.eth.coinbase);
 // console.log(web3.fromWei(balances, 'ether'))
-web3.personal.unlockAccount(account, 'lendlove');
+console.log(web3.personal)
+web3.personal_unlockAccount(from, 'bobo');
 result = web3.eth.sendTransaction(
   trans_data
 )
