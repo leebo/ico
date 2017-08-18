@@ -41,24 +41,24 @@ namespace '/api/v1' do
 
   # 获取地址发送
   get '/icos' do
-    json Status.All
+    json Ico.All
   end
   # 获取地址发送
   get '/icos/go' do
-    json Status.find_by(state: 1)
+    json Ico.find_by(state: 1)
   end
 
   put '/icos/:id' do
     params = JSON.parse(request.body.read)
     params = params.delete_if {|key, value| key == nil }
-    @status = Status.find(id)
-    @status.update(params)
-    json status: @status
+    @ico = Ico.find(id)
+    @ico.update(params)
+    json ico: @ico
   end
 
   get '/accounts' do
     @accounts = Account.all
-    json server: @accounts
+    json @accounts
   end
 
   post '/accounts' do

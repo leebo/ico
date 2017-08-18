@@ -7,6 +7,6 @@ development:
 production:
   clients:
     default:
-      database: ico
+      database: ico_dev
       hosts:
         - localhost:27017
