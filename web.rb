@@ -4,6 +4,7 @@ require 'sinatra/json'
 require 'sinatra/reloader' if development?
 require "sinatra/namespace"
 require 'jeth'
+require './utils.rb'
 require 'require_all'
 require './worker.rb'
 require_all 'models'
@@ -28,14 +29,18 @@ namespace '/api/v1' do
   end
 
   # 获取地址发送
-  get '/status' do
-    json status: Status.first
+  get '/icos' do
+    json Status.All
+  end
+  # 获取地址发送
+  get '/icos/go' do
+    json Status.find_by(state: 1)
   end
 
-  put '/status' do
+  put '/icos/:id' do
     params = JSON.parse(request.body.read)
     params = params.delete_if {|key, value| key == nil }
-    @status = Status.first_or_create
+    @status = Status.find(id)
     @status.update(params)
     json status: @status
   end
