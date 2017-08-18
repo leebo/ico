@@ -5,7 +5,7 @@ class Account
   # eth 地址
   field :addr, type: String
   # 余额
-  field :balance, type: Integer
+  field :balance, type: Float
   # wallet
   field :wallet, type: String
   # 状态

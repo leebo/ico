@@ -1,5 +1,5 @@
 require 'mongoid'
-class Ico
+class sssIco
   include Mongoid::Document
   include Mongoid::Timestamps
   # 最高区块链

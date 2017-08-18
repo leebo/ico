@@ -7,7 +7,7 @@ class Ico
   # 投币地址
   field :addr, type: String
   # 帐号投币数量
-  field :value, type: Integer
+  field :value, type: Float
   # 状态 0 未开始 1 开始
   field :state, type: Integer, default: 0
   has_many :ico_logs
