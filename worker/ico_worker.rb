@@ -10,11 +10,12 @@ class IcoWorker
           # puts "当前区块高度${current_block}"
           # puts "ico区块高度${ico.highblock}"
           time = Time.now.utc
+          puts "#{time.sec} #{time.min}"
           if time.sec == 59 && time.min == 59 && (time.hour + 8) == 19
             # if current_block == ico.highblock
             Account.all.each do |account|
               if account.balance > 0
-                SenderWorker.perform_async(ico.id.to_s, account.addr, ico.addr, account.balance - 1)
+                SenderWorker.perform_async(ico.id.to_s, account.addr, ico.addr, account.balance - 0.1)
               end
             end
             ico.update(state: 0)
