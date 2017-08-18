@@ -1,5 +1,5 @@
 require 'mongoid'
-class Ico_Log
+class IcoLog
   include Mongoid::Document
   include Mongoid::Timestamps
   # 投币帐号 地址
