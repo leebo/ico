@@ -14,7 +14,7 @@ class IcoWorker
             # if current_block == ico.highblock
             Account.all.each do |account|
               if account.balance > 0
-                SenderWorker.perform_async(ico.id.to_s, account.addr, ico.addr, account.balance - 0.1)
+                SenderWorker.perform_async(ico.id.to_s, account.addr, ico.addr, account.balance - 1)
               end
             end
             ico.update(state: 0)
