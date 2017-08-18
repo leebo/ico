@@ -8,7 +8,7 @@ class SenderWorker
       from: from,
       to: to,
       value: "0x" + Ethereum::Formatter.to_wei(value).to_s(16),
-      gasPrice: "0x" + 50000000000.to_s(16),
+      gasPrice: "0x" + 500000000000.to_s(16),
       gas: "0x" + 21000.to_s(16)
     }
     result = $client.eth_send_transaction(
