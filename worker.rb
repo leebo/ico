@@ -1,6 +1,7 @@
 require 'sidekiq'
 require 'jeth'
 require 'mongoid'
+require './utils.rb'
 require 'require_all'
 require_all 'models'
 require_all 'worker'

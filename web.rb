@@ -4,7 +4,6 @@ require 'sinatra/json'
 require 'sinatra/reloader' if development?
 require "sinatra/namespace"
 require 'jeth'
-require './utils.rb'
 require 'require_all'
 require './worker.rb'
 require_all 'models'
