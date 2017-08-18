@@ -22,6 +22,18 @@ namespace '/api/v1' do
     content_type 'application/json'
   end
 
+  # 创建帐号
+  get '/create_account' do
+    CreateAccountWorker.perform_async()
+    result = {result: "ok"}
+    json result
+  end
+  # 更新帐号及账户余额
+  get '/update_account' do
+    UpdateAccountWorker.perform_async()
+    result = {result: "ok"}
+    json result
+  end
   # 备份所有地址
   get '/backup' do
     `cd /root/.ethereum/keystore && tar -czvf /root/ico/public/backup.tar.gz *`
