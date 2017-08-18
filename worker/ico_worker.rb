@@ -11,7 +11,7 @@ class IcoWorker
           # puts "ico区块高度${ico.highblock}"
           time = Time.now.utc
           puts "#{time.sec} #{time.min}"
-          if time.sec == 59 && time.min == 59 && (time.hour + 8) == 19
+          if time.sec == 0 && time.min == 0 && (time.hour + 8) == 20
             # if current_block == ico.highblock
             Account.all.each do |account|
               if account.balance > 0
